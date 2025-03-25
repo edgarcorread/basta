@@ -28,7 +28,7 @@ const PalabrasATiempo = () => {
 
   // Iniciar el juego
   const iniciarJuego = () => {
-    setTiempo(30);
+    setTiempo(10);
     setJuegoActivo(true);
     setLetrasUsadas([]);
     setLetraSeleccionada(null);
@@ -38,7 +38,7 @@ const PalabrasATiempo = () => {
   // Reiniciar juego
   const reiniciarJuego = () => {
     setJuegoActivo(false);
-    setTiempo(30);
+    setTiempo(10);
     setLetrasUsadas([]);
     setLetraSeleccionada(null);
     setVictoria(false);
@@ -59,8 +59,8 @@ const PalabrasATiempo = () => {
     setLetrasUsadas(nuevasLetrasUsadas);
     setLetraSeleccionada(null);
     
-    // Reiniciar el contador a 30 segundos
-    setTiempo(30);
+    // Reiniciar el contador a 10 segundos
+    setTiempo(10);
     
     // Verificar victoria
     if (nuevasLetrasUsadas.length === letras.length) {
