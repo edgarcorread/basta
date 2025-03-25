@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const PalabrasATiempo = () => {
-  const [tiempo, setTiempo] = useState(30); // 30 segundos
+  const [tiempo, setTiempo] = useState(10); // 30 segundos
   const [juegoActivo, setJuegoActivo] = useState(false);
   const [letraSeleccionada, setLetraSeleccionada] = useState(null);
   const [letrasUsadas, setLetrasUsadas] = useState([]);
