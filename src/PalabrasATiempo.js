@@ -6,10 +6,26 @@ const PalabrasATiempo = () => {
   const [letraSeleccionada, setLetraSeleccionada] = useState(null);
   const [letrasUsadas, setLetrasUsadas] = useState([]);
   const [victoria, setVictoria] = useState(false);
+  const [categoria, setCategoria] = useState("");
+
+  // Lista de categorías para el juego
+  const categorias = [
+    'Animales', 'Frutas', 'Verduras', 'Cosas que den miedo', 
+    'Cosas que vuelen', 'Cosas que puede haber en una escuela', 
+    'Cosas que puede haber en una cocina', 'Colores', 'Países', 
+    'Ciudades', 'Marcas', 'Deportes', 'Características de personas', 
+    'Nombres de mujer', 'Nombres de hombre', 'Apellidos', 
+    'Comida que puede acompañar al pollo', 'Equipos de fútbol', 
+    'Famosos', 'Algo suave', 'Algo que tenga la letra R', 
+    'Algo que tenga la letra L', 'Series', 'Películas', 
+    'Partes del cuerpo', 'Frases que dice un hombre', 
+    'Frases que dice una mujer', 'Frases que dice un profesor', 
+    'Profesiones'
+  ];
 
   // Lista de letras para el juego
   const letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-                  'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'];
+                 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'];
 
   // Temporizador
   useEffect(() => {
@@ -26,6 +42,14 @@ const PalabrasATiempo = () => {
     return () => clearInterval(intervalo);
   }, [juegoActivo, tiempo]);
 
+  // Botón de categoría - función simplificada al máximo
+  const mostrarCategoria = () => {
+    // Selecciona una categoría aleatoria del array
+    const indiceAleatorio = Math.floor(Math.random() * categorias.length);
+    // Actualiza directamente el estado
+    setCategoria(categorias[indiceAleatorio]);
+  };
+
   // Iniciar el juego
   const iniciarJuego = () => {
     setTiempo(10);
@@ -33,6 +57,7 @@ const PalabrasATiempo = () => {
     setLetrasUsadas([]);
     setLetraSeleccionada(null);
     setVictoria(false);
+    // No reseteamos la categoría para mantenerla entre juegos
   };
 
   // Reiniciar juego
@@ -42,6 +67,8 @@ const PalabrasATiempo = () => {
     setLetrasUsadas([]);
     setLetraSeleccionada(null);
     setVictoria(false);
+    // Al reiniciar, volvemos al estado inicial de la categoría
+    setCategoria("");
   };
 
   // Seleccionar una letra
@@ -72,6 +99,27 @@ const PalabrasATiempo = () => {
   return (
     <div className="max-w-md mx-auto p-4 bg-gray-100 rounded-lg">
       
+      {/* Sección de botón y visualización de categoría */}
+      <div className="mb-4">
+        {/* Botón de categoría */}
+        <div className="flex justify-center mb-2">
+          <button 
+            onClick={mostrarCategoria} 
+            className="px-4 py-2 bg-purple-600 text-white rounded font-bold hover:bg-purple-700"
+          >
+            Mostrar Categoría
+          </button>
+        </div>
+        
+        {/* Área de visualización de categoría */}
+        <div className="p-3 bg-purple-100 border-2 border-purple-400 rounded-md text-center min-h-[50px] flex items-center justify-center">
+          {categoria ? (
+            <p className="text-xl font-bold text-purple-800">{categoria}</p>
+          ) : (
+            <p className="text-gray-500">Presiona el botón para ver una categoría</p>
+          )}
+        </div>
+      </div>
       
       {/* Temporizador y estado del juego */}
       <div className="flex justify-between items-center mb-4">
